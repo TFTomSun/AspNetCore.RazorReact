@@ -62,16 +62,20 @@ Getting Started
     
     * Replace the content of the Index.cshtml razor file
 ```html
-<h2>Example of code</h2>
+@page
+@addTagHelper "*, TomSun.AspNetCore.RazorReact"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<react-scripts/>
 
-<pre>
-    <div class="container">
-        <div class="block two first">
-            <h2>Your title</h2>
-            <div class="wrap">
-            //Your content
-            </div>
-        </div>
+<react component-type="@typeof(HelloWorld)">
+    <div>
+        Hi @HelloWorld.Bind(x => x.state.Greetings)<br />
+        Server time is: @HelloWorld.Bind(x => x.state.ServerTime)
     </div>
-</pre>
+</react>
+
+
 ```
