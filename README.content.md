@@ -40,7 +40,7 @@ Getting Started
         }
     ```
     
-    * Create the react component HelloWorld.cs
+* Create the react component HelloWorld.cs
     ```csharp
          public class HelloWorld : ReactComponent<HelloWorld>
     {
@@ -60,7 +60,7 @@ Getting Started
     }
     ```
     
-    * Replace the content of the Index.cshtml razor file
+* Replace the content of the Index.cshtml razor file
     ```html
     @page
     @addTagHelper "*, TomSun.AspNetCore.RazorReact"
