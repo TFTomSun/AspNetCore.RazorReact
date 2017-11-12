@@ -61,21 +61,19 @@ Getting Started
     ```
     
     * Replace the content of the Index.cshtml razor file
-```html
-@page
-@addTagHelper "*, TomSun.AspNetCore.RazorReact"
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
-<react-scripts/>
+    ```html
+    @page
+    @addTagHelper "*, TomSun.AspNetCore.RazorReact"
+    @model IndexModel
+    @{
+        ViewData["Title"] = "Home page";
+    }
+    <react-scripts/>
 
-<react component-type="@typeof(HelloWorld)">
-    <div>
-        Hi @HelloWorld.Bind(x => x.state.Greetings)<br />
-        Server time is: @HelloWorld.Bind(x => x.state.ServerTime)
-    </div>
-</react>
-
-
-```
+    <react component-type="@typeof(HelloWorld)">
+        <div>
+            Hi @HelloWorld.Bind(x => x.state.Greetings)<br />
+            Server time is: @HelloWorld.Bind(x => x.state.ServerTime)
+        </div>
+    </react>
+    ```
