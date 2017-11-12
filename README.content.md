@@ -65,11 +65,6 @@ Getting Started
 ...
 <react-scripts/>
 
-<react component-type="@typeof(HelloWorld)">
-    <div>
-        Hi @HelloWorld.Bind(x => x.state.Greetings)<br />
-        Server time is: @HelloWorld.Bind(x => x.state.ServerTime)
-    </div>
-</react>
+
 
     ```
