@@ -61,7 +61,7 @@ Getting Started
     ```
     
     * Replace the content of the Index.cshtml razor file
-     ```html
+     ```
 @page
 @addTagHelper "*, TomSun.AspNetCore.RazorReact"
 @model IndexModel
