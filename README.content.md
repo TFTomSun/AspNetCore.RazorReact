@@ -61,11 +61,11 @@ Getting Started
     ```
     
     * Replace the content of the Index.cshtml razor file
-     ```
-@page
-@addTagHelper "*, TomSun.AspNetCore.RazorReact"
-@model IndexModel
-@{
+     ```html
+@ page
+@ addTagHelper "*, TomSun.AspNetCore.RazorReact"
+@ model IndexModel
+@ {
     ViewData["Title"] = "Home page";
 }
 <react-scripts/>
