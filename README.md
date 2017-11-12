@@ -1,4 +1,4 @@
-# BuildStatus for Build 1.0.4
+# BuildStatus for Build 1.0.11
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://www.nuget.org/packages/TomSun.AspNetCore.RazorReact/) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://www.nuget.org/packages/TomSun.AspNetCore.RazorReact/) 
