@@ -1,4 +1,4 @@
-# BuildStatus for Build 1.0.16
+# BuildStatus for Build 1.0.17
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact/build/tests)
@@ -90,3 +90,4 @@ This project is based on [DotNetify.React](https://github.com/dsuryd/dotNetify) 
         </div>
     </react>
     ```
+* Run your app. (Hint: IE11 is currently not supported, because of a bug in dotNetify/signalR)
