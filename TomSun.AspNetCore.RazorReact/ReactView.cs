@@ -1,8 +1,8 @@
 ﻿using DotNetify;
 
-namespace TomSunn.DotNetify.SampleWebApp
+namespace TomSun.AspNetCore.RazorReact
 {
-    public class ReactComponentClient<T>
+    public class ReactView<T>
         where T:BaseVM
     {
         public T state { get; }

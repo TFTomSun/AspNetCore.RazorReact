@@ -10,6 +10,7 @@ public static class Extensions
 {
     public static void UseRazorReact(this IServiceCollection services)
     {
+        services.AddNodeServices();
         services.AddSignalR();
         services.AddDotNetify();
     }
