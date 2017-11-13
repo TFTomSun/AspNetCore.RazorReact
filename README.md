@@ -1,4 +1,4 @@
-# BuildStatus for Build 1.0.13
+# BuildStatus for Build 1.0.15
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact/build/tests)
@@ -13,8 +13,10 @@ This project is based on DotNetify.React and provides tag helpers for defining r
 * typesafe client side bindings
 * very simple to setup
 
-## Getting Started
+## Samples
+* The source code of an sample web app can be found [here](https://github.com/TFTomSun/AspNetCore.RazorReact.DemoApp "Razor React Sample App")
 
+## Getting Started
 * Create a ASP.NET Core 2.0 Web Application (No React, No MVC, simple Web Application)
 * Install this nuget package
 * Extend the Startup.cs file:
