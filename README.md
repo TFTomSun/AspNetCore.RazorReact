@@ -1,4 +1,4 @@
-# BuildStatus for Build 1.0.15
+# BuildStatus for Build 1.0.16
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact/build/tests)
@@ -7,7 +7,7 @@
 
 # Razor React 
 
-This project is based on DotNetify.React and provides tag helpers for defining react components within ASP.NET Core Razor Pages. 
+This project is based on [DotNetify.React](https://github.com/dsuryd/dotNetify) and provides tag helpers for defining react components within ASP.NET Core Razor Pages. 
 ## Features
 * No javascript, no JSX required
 * typesafe client side bindings
