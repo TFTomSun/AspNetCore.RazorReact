@@ -7,7 +7,7 @@ This project is based on DotNetify.React and provides tag helpers for defining r
 * very simple to setup
 
 ## Samples
-* The source code of an sample web app can be found [Razor React Sample App](https://github.com/TFTomSun/AspNetCore.RazorReact.DemoApp "here")
+* The source code of an sample web app can be found [here](https://github.com/TFTomSun/AspNetCore.RazorReact.DemoApp "Razor React Sample App")
 
 ## Getting Started
 * Create a ASP.NET Core 2.0 Web Application (No React, No MVC, simple Web Application)
