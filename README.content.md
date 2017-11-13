@@ -1,6 +1,6 @@
 # Razor React 
 
-This project is based on DotNetify.React and provides tag helpers for defining react components within ASP.NET Core Razor Pages. 
+This project is based on [DotNetify.React](https://github.com/dsuryd/dotNetify) and provides tag helpers for defining react components within ASP.NET Core Razor Pages. 
 ## Features
 * No javascript, no JSX required
 * typesafe client side bindings
