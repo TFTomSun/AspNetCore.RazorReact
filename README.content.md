@@ -83,3 +83,4 @@ This project is based on [DotNetify.React](https://github.com/dsuryd/dotNetify) 
         </div>
     </react>
     ```
+* Run your app. (Hint: IE11 is currently not supported, because of a bug in dotNetify/signalR)
