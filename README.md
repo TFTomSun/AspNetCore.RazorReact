@@ -1,15 +1,19 @@
-# BuildStatus for Build 1.0.12
+# BuildStatus for Build 1.0.13
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact/build/tests)
 [![NuGet](https://img.shields.io/nuget/v/TomSun.AspNetCore.RazorReact.svg?style=flat-square)](https://www.nuget.org/packages/TomSun.AspNetCore.RazorReact/) 
 [![NuGet Dowloads](https://img.shields.io/nuget/dt/TomSun.AspNetCore.RazorReact.svg)](https://www.nuget.org/packages/TomSun.AspNetCore.RazorReact/) 
 
-#Razor React 
+# Razor React 
 
 This project is based on DotNetify.React and provides tag helpers for defining react components within ASP.NET Core Razor Pages. 
+## Features
+* No javascript, no JSX required
+* typesafe client side bindings
+* very simple to setup
 
-Getting Started
+## Getting Started
 
 * Create a ASP.NET Core 2.0 Web Application (No React, No MVC, simple Web Application)
 * Install this nuget package
