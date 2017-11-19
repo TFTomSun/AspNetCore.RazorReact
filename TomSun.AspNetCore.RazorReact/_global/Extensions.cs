@@ -9,10 +9,19 @@ using Microsoft.Extensions.DependencyInjection;
 using TomSun.AspNetCore.RazorReact.TagHelpers;
 using TomSun.Portable.Factories;
 using System.Linq;
+using System.Linq.Expressions;
+using TomSun.AspNetCore.RazorReact;
 
 // ReSharper disable once CheckNamespace
 public static class Extensions
 {
+    public static ActionDefinition<T> Handle<T, TView, TState, TProps>(this ActionDefinition<T> reactEvent,
+        ReactView<TView, TState, TProps> context,
+        Expression<Action<TView, T>> expression) 
+        where TState : new() where TProps : new()
+    {
+       return context.HandleEvent( expression);
+    }
     public static IEnumerable<string> FixIndent(this IEnumerable<string> codeLines)
     {
         var defaultIndent = 0;

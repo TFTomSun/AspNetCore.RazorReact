@@ -4,12 +4,29 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using AgileObjects.ReadableExpressions;
 using DotNetify;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace TomSun.AspNetCore.RazorReact
 {
-    public sealed class ReactView<TState, TProps> : ReactView<ReactView<TState, TProps>, TState, TProps>
-        where TState : BaseVM
+    public abstract class ReactRazorViewComponentPage<TComponent, TView, TProps, TState> : RazorPage<object> // must be object
+        where TView : ReactView<TView,TState,TProps>,new ()
+        where TProps : new() 
+        where TState : new()
+    {
+        public string ReactClassName => typeof(TComponent).Name;
+
+        public string Bind<TResult>(Expression<Func<TView, TResult>> binding)
+        {
+            return new TView().Bind(binding);
+        }
+    }
+    public abstract class ReactRazorPage<TModel> : Microsoft.AspNetCore.Mvc.RazorPages.Page
+    {
+        public int Test { get; set; }
+    }
+    public sealed class ReactView<TState, TProps> : ReactView<ReactView<TState, TProps>, TState, TProps> where TState : new() where TProps : new()
     {
 
     }
@@ -24,12 +41,46 @@ namespace TomSun.AspNetCore.RazorReact
         {
 
         }
-    }
-    public abstract class ReactView<TSelf, TState, TProps>: ReactView
-    {
-        public new TState state { get; }
 
-        public new TProps props { get; }
+        //public void setState(object value)
+        //{
+            
+        //}
+    }
+
+    public abstract class ReactView<TSelf, TState, TProps> : ReactView
+        where TProps : new()
+        where TState : new()
+    {
+        public new TState state { get; } = new TState();
+
+        public new TProps props { get; } = new TProps();
+
+        public new void setState(TState value)
+        {
+
+        }
+
+        public ActionDefinition<T> HandleEvent<T>(Expression<Action<TSelf,T>> expression)
+        {
+            var stateType = typeof(TState);
+            var typeName = stateType.Name;
+            if (stateType.IsNested)
+            {
+                typeName = stateType.DeclaringType.Name + "." + stateType.Name;
+            }
+            var viewParameterName = expression.Parameters.First().Name;
+            var body = expression.ToReadableString()
+                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(l=>l.Trim()).Aggregate(string.Empty)
+                .Replace($"({viewParameterName},","")
+                .Replace(") =>", " =>")
+                .Replace(viewParameterName + ".", "this.")
+                .Replace($"new {typeName}{{", "{")
+                .Replace(" = ", ": ");
+             
+            var value = body;
+            return $"{{{value}}}";
+        }
 
         public string Bind<TResult>(Expression<Func<TSelf, TResult>> expression)
         {
@@ -149,7 +200,7 @@ namespace TomSun.AspNetCore.RazorReact
         }
     }
 
-    public class ActionDefinition : ActionDefinition<object>
+    public class ActionDefinition : ActionDefinition<string>
     {
         [Obsolete(UseFactoryMessage, true)]
         public ActionDefinition()

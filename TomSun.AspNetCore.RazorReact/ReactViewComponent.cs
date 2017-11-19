@@ -11,9 +11,16 @@ namespace TomSun.AspNetCore.RazorReact
     public abstract class ReactViewComponent<TSelf, TView, TProps, TState> : ReactViewComponent<TSelf, TView, TProps>,
         IReactViewComponentWithViewModel
         where TSelf : ReactViewComponent<TSelf, TView, TProps, TState>
-        where TView : new()
+        where TView : ReactView<TView, TState, TProps>, new()
         where TProps : new()
+        where TState : new()
     {
+        public abstract class Page : ReactRazorViewComponentPage<TSelf, TView, TProps,TState>
+        {
+            
+        }
+
+
         public new class BaseView : ReactView<TView, TState, TProps>
         {
 
