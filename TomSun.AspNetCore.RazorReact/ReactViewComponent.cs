@@ -1,31 +1,50 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using DotNetify;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using TomSun.AspNetCore.Extensions.SharpComponents;
 using TomSun.AspNetCore.RazorReact.TagHelpers;
 
 namespace TomSun.AspNetCore.RazorReact
 {
-    public abstract class ReactViewComponent<TSelf, TParameter, TViewModel> : SharpViewComponent<TSelf, TParameter>
-        where TSelf: ReactViewComponent<TSelf, TParameter, TViewModel> where TViewModel : BaseVM
+    public abstract class ReactViewComponent<TSelf, TView, TProps, TState> : ReactViewComponent<TSelf, TView, TProps>,
+        IReactViewComponentWithViewModel
+        where TSelf : ReactViewComponent<TSelf, TView, TProps, TState>
+        where TView : new()
+        where TProps : new()
     {
-        public new static ViewAbstraction View { get; } = new ViewAbstraction();
-        public class ViewAbstraction : ReactView<ViewAbstraction, TViewModel, TParameter>
+        public new class BaseView : ReactView<TView, TState, TProps>
         {
-            
+
+        }
+    }
+
+    internal interface IReactViewComponentWithViewModel : IReactViewComponent
+    {
+
+    }
+
+    internal interface IReactViewComponent
+    {
+    }
+
+    public abstract class ReactViewComponent<TSelf, TView, TProps> : SharpViewComponent<TSelf, TProps>,
+        IReactViewComponent
+        where TSelf : ReactViewComponent<TSelf, TView, TProps>
+        where TView : new()
+        where TProps : new()
+    {
+        public new static TView View { get; } = new TView();
+
+        public class BaseView : ReactView<TView, object, TProps>
+        {
+
         }
 
-        public new class ComponentTagHelper : SharpViewComponent<TSelf, TParameter>.ComponentTagHelper, IReactTagHelper
+        public async Task<IViewComponentResult> DoInvokeAsync(ITuple parameter)
         {
-            public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-            {
-                await ReactTagHelper.DoProcessAsync(this, context, output,
-                    async ()=> (await RenderSync(this.Parameter)).GetHtmlString());
-            }
-
-            Type IReactTagHelper.ComponentType { get; } = typeof(TViewModel);
-            bool IReactTagHelper.Render { get; } = true;
+            return await base.DoInvokeAsync(parameter.Convert<TProps>());
         }
     }
 }

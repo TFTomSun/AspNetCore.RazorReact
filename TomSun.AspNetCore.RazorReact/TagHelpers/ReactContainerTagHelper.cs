@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using TomSun.Common.SystemExtensionMethods.Explicit;
 using TomSun.Portable.Factories;
 
 namespace TomSun.AspNetCore.RazorReact.TagHelpers
@@ -10,19 +11,30 @@ namespace TomSun.AspNetCore.RazorReact.TagHelpers
     public class ReactContainerTagHelper : TagHelper
     {
         public const string ReactRenderContextKey = "ReactRenderContext";
+
+        private ReactRenderContext RenderContext { get; } = new ReactRenderContext();
+        public override void Init(TagHelperContext context)
+        {
+            var httpContext = Api.Global.CurrentContext();//.Items
+
+            httpContext.Items.Add(ReactRenderContextKey, this.RenderContext);
+        }
+      
+
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.TagMode = TagMode.StartTagAndEndTag;
 
-            var reactContext = new ReactRenderContext();
-            var httpContext = Api.Global.CurrentContext();//.Items
+            //var reactContext = new ReactRenderContext();
+            //var httpContext = Api.Global.CurrentContext();//.Items
 
-            httpContext.Items.Add(ReactRenderContextKey, reactContext);
-            var content = await output.GetChildContentAsync();
-            context.Items.Remove(ReactRenderContextKey);
+            //httpContext.Items.Add(ReactRenderContextKey, reactContext);
+            var content = (await output.GetChildContentAsync(NullHtmlEncoder.Default));//.NotNull();
+            //context.Items.Remove(ReactRenderContextKey);
 
-            var scriptCode = reactContext.RenderInstructions.Select(i=>i()).Aggregate(
-                Environment.NewLine).SurroundWith(Environment.NewLine);
+            var scriptCode = this.RenderContext.ReactContent.Where(
+                x=>x.content != null).OrderBy(x=>x.Priority).Select(
+                x=>x.content).Aggregate(Environment.NewLine).SurroundWith(Environment.NewLine);
 
 
             var fullScriptCode = $@"
@@ -37,8 +49,10 @@ namespace TomSun.AspNetCore.RazorReact.TagHelpers
 <script type=""text/babel"">{new HtmlString(scriptCode)}</script>
 ";
             output.PreElement.SetHtmlContent(new HtmlString(fullScriptCode));
-
-            await base.ProcessAsync(context, output);
+            output.Content.SetHtmlContent(content);
+            //output.Content.Clear();
+            //output.TagName = null;
+//            await base.ProcessAsync(context, output);
         }
 
     }
