@@ -1,4 +1,4 @@
-# BuildStatus for Build 1.0.19
+# BuildStatus for Build 1.0.20
 
 [![Build status](https://img.shields.io/appveyor/ci/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact) 
 [![Test status](https://img.shields.io/appveyor/tests/TFTomSun/aspnetcore-razorreact.svg)](https://ci.appveyor.com/project/TFTomSun/aspnetcore-razorreact/build/tests)
